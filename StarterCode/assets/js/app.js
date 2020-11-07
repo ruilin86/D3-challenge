@@ -21,7 +21,7 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import Data
-d3.csv("assets/js/data.csv").then(function(healthData) {console.log(healthData);
+d3.csv("assets/data/data.csv").then(function(healthData) {console.log(healthData);
 
     // Step 1: Parse Data/Cast as numbers
     // ==============================
@@ -33,11 +33,11 @@ d3.csv("assets/js/data.csv").then(function(healthData) {console.log(healthData);
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([d3.min(healthData, d => d.poverty)*0.95, d3.max(healthData, d => d.poverty)*1.05])
+      .domain([d3.min(healthData, d => d.poverty), d3.max(healthData, d => d.poverty)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([d3.min(healthData, d => d.healthcare)*0.95, d3.max(healthData, d => d.healthcare)*1.05])
+      .domain([d3.min(healthData, d => d.healthcare), d3.max(healthData, d => d.healthcare)])
       .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -105,4 +105,3 @@ d3.csv("assets/js/data.csv").then(function(healthData) {console.log(healthData);
   }).catch(function(error) {
     console.log(error);
   });
-
